@@ -1,0 +1,44 @@
+#SC lab 13-10-2022
+
+import numpy as np
+import random
+#for square matrices
+"""a=([1,2,3],[2,4,6],[7,8,9])
+b=([1,2,3])
+#find rank
+rank=np.linalg.matrix_rank(a)
+print("rank is ",rank)
+#find norm
+norm=np.linalg.norm(a)
+norm1=np.linalg.norm(a,1)
+print("norm is ",norm)
+print("norm l1 of b is ",norm1)
+#find eigen value and vector
+lam,x=np.linalg.eig(a)
+print("Eigen vector is ",x)
+print("Eigen values ",lam)
+#diagonalize Lamda
+lam=np.diag(lam)
+# Diagonalisation A=X*Lam*X^-1
+c=(x@lam)@(np.linalg.inv(x))
+print("Diagonalized A=\n",c)
+#to check if a==c in matrices 
+print(np.allclose(c,a))
+"""
+
+#for non square or square matrices
+m=3
+n=3
+#create A RANDOM MATRIX
+A=np.random.rand(m,n)
+#svd= single variable decomposition A=U*Sigma*Vtranspose
+u,sig,v=np.linalg.svd(A)
+u.shape,sig.shape,v.shape
+#sig is an array not matrix. Sigma is thoeritically of dimension mxn
+s=np.zeros([m,n])
+p=min(m,n)
+#filling the mxn matrix till the square matrix with the order of min(m,n)
+s[0:p,0:p]=np.diag(sig)
+#Rec is the reconstructed matrix
+Rec=u@s@v
+print(np.allclose(Rec,A))
